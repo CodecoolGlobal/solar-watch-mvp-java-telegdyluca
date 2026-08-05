@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 public class GeocodingService {
 
     @Value("${OPENWEATHER_API_KEY}")
-    String apiKey;
+    private String apiKey;
 
     private final RestTemplate restTemplate;
 
