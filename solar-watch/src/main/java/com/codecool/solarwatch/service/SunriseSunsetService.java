@@ -1,7 +1,7 @@
 package com.codecool.solarwatch.service;
 
-import com.codecool.solarwatch.model.SunriseSunsetApiResponse;
-import com.codecool.solarwatch.model.SunriseSunsetReport;
+import com.codecool.solarwatch.model.dto.SunriseSunsetApiResponse;
+import com.codecool.solarwatch.model.dto.SunriseSunsetReport;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 

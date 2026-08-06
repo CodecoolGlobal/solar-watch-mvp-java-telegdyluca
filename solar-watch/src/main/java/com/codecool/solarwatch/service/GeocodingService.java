@@ -1,7 +1,7 @@
 package com.codecool.solarwatch.service;
 
 import com.codecool.solarwatch.exception.CityNotFoundException;
-import com.codecool.solarwatch.model.GeoLocationReport;
+import com.codecool.solarwatch.model.dto.GeoLocationReport;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

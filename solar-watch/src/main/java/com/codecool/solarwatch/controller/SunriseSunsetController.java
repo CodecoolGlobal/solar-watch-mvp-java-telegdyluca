@@ -1,7 +1,7 @@
 package com.codecool.solarwatch.controller;
 
-import com.codecool.solarwatch.model.GeoLocationReport;
-import com.codecool.solarwatch.model.SunriseSunsetReport;
+import com.codecool.solarwatch.model.dto.GeoLocationReport;
+import com.codecool.solarwatch.model.dto.SunriseSunsetReport;
 import com.codecool.solarwatch.service.GeocodingService;
 import com.codecool.solarwatch.service.SunriseSunsetService;
 import org.springframework.web.bind.annotation.GetMapping;

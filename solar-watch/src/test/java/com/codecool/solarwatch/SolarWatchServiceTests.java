@@ -1,9 +1,9 @@
 package com.codecool.solarwatch;
 
 import com.codecool.solarwatch.exception.CityNotFoundException;
-import com.codecool.solarwatch.model.GeoLocationReport;
-import com.codecool.solarwatch.model.SunriseSunsetApiResponse;
-import com.codecool.solarwatch.model.SunriseSunsetReport;
+import com.codecool.solarwatch.model.dto.GeoLocationReport;
+import com.codecool.solarwatch.model.dto.SunriseSunsetApiResponse;
+import com.codecool.solarwatch.model.dto.SunriseSunsetReport;
 import com.codecool.solarwatch.service.GeocodingService;
 import com.codecool.solarwatch.service.SunriseSunsetService;
 import org.junit.jupiter.api.Test;
