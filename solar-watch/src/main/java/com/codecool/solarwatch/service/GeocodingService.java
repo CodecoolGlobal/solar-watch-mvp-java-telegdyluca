@@ -19,7 +19,7 @@ public class GeocodingService {
     }
 
     public GeoLocationReport getCoordinates(String city) {
-        String url = String.format("http://api.openweathermap.org/geo/1.0/direct?q=%s&appid=%s", city, apiKey);
+        String url = String.format("https://api.openweathermap.org/geo/1.0/direct?q=%s&appid=%s", city, apiKey);
 
         GeoLocationReport[] response = restTemplate.getForObject(url, GeoLocationReport[].class);
 
