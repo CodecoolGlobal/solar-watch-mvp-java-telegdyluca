@@ -1,9 +1,11 @@
 package com.codecool.solarwatch.service;
 
 import com.codecool.solarwatch.model.dto.SunriseSunsetReport;
-import com.codecool.solarwatch.model.entity.City;
-import com.codecool.solarwatch.model.entity.SunriseSunsetTimes;
+import com.codecool.solarwatch.model.entity.CityEntity;
+import com.codecool.solarwatch.model.entity.SunriseSunsetTimeEntity;
 import com.codecool.solarwatch.repository.SunriseSunsetTimesRepository;
+import com.codecool.solarwatch.service.api.SunriseSunsetService;
+import com.codecool.solarwatch.service.sql.SunriseSunsetTimesService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -34,7 +36,7 @@ public class SunriseSunsetTimesServiceTests {
 
     @Test
     void getSunriseSunsetByCityAndDate_CallsSunriseSunsetServiceAndSaves_WhenSunriseSunsetTimeNotInDatabase() {
-        City mockCity = new City();
+        CityEntity mockCity = new CityEntity();
         mockCity.setName("Budapest");
         mockCity.setLatitude(47.497913);
         mockCity.setLongitude(19.040236);
@@ -42,9 +44,9 @@ public class SunriseSunsetTimesServiceTests {
 
         when(sunriseSunsetTimesRepository.findByCityAndDate(mockCity, LocalDate.parse("2026-08-07"))).thenReturn(Optional.empty());
         when(sunriseSunsetService.getSunriseSunsetReport(47.497913, 19.040236, LocalDate.parse("2026-08-07"), "Budapest")).thenReturn(mockReport);
-        when(sunriseSunsetTimesRepository.save(any(SunriseSunsetTimes.class))).thenAnswer(invocation -> invocation.getArgument(0));
+        when(sunriseSunsetTimesRepository.save(any(SunriseSunsetTimeEntity.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
-        SunriseSunsetTimes result = sunriseSunsetTimesService.getSunriseSunsetByCityAndDate(mockCity, LocalDate.parse("2026-08-07"));
+        SunriseSunsetTimeEntity result = sunriseSunsetTimesService.getSunriseSunsetByCityAndDate(mockCity, LocalDate.parse("2026-08-07"));
 
         assertEquals("Budapest", result.getCity().getName());
     }

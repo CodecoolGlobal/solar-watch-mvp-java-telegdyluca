@@ -2,10 +2,10 @@ package com.codecool.solarwatch.controller;
 
 import com.codecool.solarwatch.exception.CityNotFoundException;
 import com.codecool.solarwatch.model.dto.SunriseSunsetReport;
-import com.codecool.solarwatch.model.entity.City;
-import com.codecool.solarwatch.model.entity.SunriseSunsetTimes;
-import com.codecool.solarwatch.service.CityService;
-import com.codecool.solarwatch.service.SunriseSunsetTimesService;
+import com.codecool.solarwatch.model.entity.CityEntity;
+import com.codecool.solarwatch.model.entity.SunriseSunsetTimeEntity;
+import com.codecool.solarwatch.service.sql.CityService;
+import com.codecool.solarwatch.service.sql.SunriseSunsetTimesService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -32,14 +32,14 @@ public class SunriseSunsetControllerTests {
 
     @Test
     void getSunriseSunset_ReturnRightResult() {
-        City mockCity = new City();
+        CityEntity mockCity = new CityEntity();
         mockCity.setName("Budapest");
         mockCity.setCountry("HUN");
         mockCity.setState("Pest");
         mockCity.setLongitude(19.040236);
         mockCity.setLatitude(47.497913);
 
-        SunriseSunsetTimes sunriseSunsetTimesEntity = new SunriseSunsetTimes();
+        SunriseSunsetTimeEntity sunriseSunsetTimesEntity = new SunriseSunsetTimeEntity();
         sunriseSunsetTimesEntity.setCity(mockCity);
         sunriseSunsetTimesEntity.setDate(LocalDate.parse("2026-07-23"));
         sunriseSunsetTimesEntity.setSunrise(LocalTime.of(5, 12, 34));

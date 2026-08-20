@@ -2,6 +2,7 @@ package com.codecool.solarwatch.service;
 
 import com.codecool.solarwatch.exception.CityNotFoundException;
 import com.codecool.solarwatch.model.dto.GeoLocationReport;
+import com.codecool.solarwatch.service.api.GeocodingService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

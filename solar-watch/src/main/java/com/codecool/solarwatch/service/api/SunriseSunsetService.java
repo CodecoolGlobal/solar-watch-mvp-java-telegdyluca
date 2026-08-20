@@ -1,4 +1,4 @@
-package com.codecool.solarwatch.service;
+package com.codecool.solarwatch.service.api;
 
 import com.codecool.solarwatch.model.dto.SunriseSunsetApiResponse;
 import com.codecool.solarwatch.model.dto.SunriseSunsetReport;

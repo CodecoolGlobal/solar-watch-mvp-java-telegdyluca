@@ -6,14 +6,14 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-public class SunriseSunsetTimes {
+public class SunriseSunsetTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    private City city;
+    private CityEntity city;
     private LocalDate date;
     private LocalTime sunrise;
     private LocalTime sunset;
@@ -22,7 +22,7 @@ public class SunriseSunsetTimes {
         return id;
     }
 
-    public City getCity() {
+    public CityEntity getCity() {
         return city;
     }
 
@@ -38,7 +38,7 @@ public class SunriseSunsetTimes {
         return sunset;
     }
 
-    public void setCity(City city) {
+    public void setCity(CityEntity city) {
         this.city = city;
     }
 

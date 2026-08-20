@@ -1,16 +1,16 @@
 package com.codecool.solarwatch.controller;
 
 import com.codecool.solarwatch.model.dto.SunriseSunsetReport;
-import com.codecool.solarwatch.model.entity.City;
+import com.codecool.solarwatch.model.entity.CityEntity;
 import com.codecool.solarwatch.model.entity.Role;
-import com.codecool.solarwatch.model.entity.SunriseSunsetTimes;
+import com.codecool.solarwatch.model.entity.SunriseSunsetTimeEntity;
 import com.codecool.solarwatch.model.entity.UserEntity;
 import com.codecool.solarwatch.model.payload.JwtResponse;
 import com.codecool.solarwatch.model.payload.UserRequest;
 import com.codecool.solarwatch.security.jwt.JwtUtils;
-import com.codecool.solarwatch.service.CityService;
-import com.codecool.solarwatch.service.SunriseSunsetTimesService;
-import com.codecool.solarwatch.service.UserService;
+import com.codecool.solarwatch.service.sql.CityService;
+import com.codecool.solarwatch.service.sql.SunriseSunsetTimesService;
+import com.codecool.solarwatch.service.sql.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -69,8 +69,8 @@ public class UserController {
     @GetMapping("/sunrise-sunset")
     public SunriseSunsetReport getSunriseSunset(@RequestParam String city, @RequestParam LocalDate date) {
 
-        City cityEntity = cityService.getCityByName(city);
-        SunriseSunsetTimes times = sunriseSunsetTimesService.getSunriseSunsetByCityAndDate(cityEntity, date);
+        CityEntity cityEntity = cityService.getCityByName(city);
+        SunriseSunsetTimeEntity times = sunriseSunsetTimesService.getSunriseSunsetByCityAndDate(cityEntity, date);
 
         return new SunriseSunsetReport(cityEntity.getName(), times.getDate(), times.getSunrise(), times.getSunset());
     }
