@@ -26,6 +26,9 @@ public class UserService {
     }
 
     public void createUser(UserEntity userEntity) {
+        if (userRepository.findByUsername(userEntity.getUsername()).isPresent()) {
+            throw new IllegalArgumentException(format("Username %s is already taken", userEntity.getUsername()));
+        }
         userRepository.save(userEntity);
     }
 

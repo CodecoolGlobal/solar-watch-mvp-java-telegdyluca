@@ -59,7 +59,7 @@ public class SunriseSunsetControllerTests {
 
     @Test
     void cityNotFoundExceptionHandler_ReturnsCorrectMessage() {
-        SunriseSunsetControllerAdvice advice = new SunriseSunsetControllerAdvice();
+        ControllerAdvice advice = new ControllerAdvice();
         CityNotFoundException exception = new CityNotFoundException();
 
         String result = advice.cityNotFoundExceptionHandler(exception);
