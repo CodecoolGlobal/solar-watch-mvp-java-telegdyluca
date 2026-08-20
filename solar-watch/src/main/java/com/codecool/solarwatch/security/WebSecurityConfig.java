@@ -37,7 +37,8 @@ public class WebSecurityConfig {
                 .exceptionHandling(e -> e.authenticationEntryPoint(authEntryPointJwt))
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/sunrise-sunset/admin/**").hasRole("ADMIN")
+                        auth.requestMatchers("/user/**").permitAll()
+                            .requestMatchers("/admin/**").hasRole("ADMIN")
                             .requestMatchers("/sunrise-sunset/**").authenticated()
                             .requestMatchers("/error").permitAll()
                             .anyRequest().authenticated());
