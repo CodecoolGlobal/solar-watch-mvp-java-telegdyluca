@@ -14,7 +14,7 @@ function LoginPage() {
         e.preventDefault();
         try {
             const response = await loginUser(username, password);
-            const userData = await response.json()
+            const userData = await response.json();
             login(userData);
             navigate("/solar-watch");
         } catch (err) {
