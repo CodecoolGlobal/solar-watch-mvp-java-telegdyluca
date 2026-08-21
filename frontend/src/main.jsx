@@ -7,23 +7,41 @@ import RegistrationPage from "./Pages/RegistrationPage.jsx";
 import LoginPage from "./Pages/LoginPage.jsx";
 import SolarWatchPage from "./Pages/SolarWatchPage.jsx";
 
+import AuthProvider from "./Context/AuthProvider.jsx";
+import GuestsOnly from "./Components/GuestsOnly/GuestsOnly.jsx";
+import Protected from "./Components/Protected/Protected.jsx";
+
 const router = createBrowserRouter([
     {
       path: "/registration",
-      element: <RegistrationPage />
+        element: (
+            <GuestsOnly>
+                <RegistrationPage />
+            </GuestsOnly>
+        ),
     },
     {
         path: "/login",
-        element: <LoginPage />
+        element: (
+            <GuestsOnly>
+                <LoginPage />
+            </GuestsOnly>
+        ),
     },
     {
         path: "/solar-watch",
-        element: <SolarWatchPage />
+        element: (
+            <Protected>
+                <SolarWatchPage />
+            </Protected>
+        ),
     },
 ])
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
+        <AuthProvider>
             <RouterProvider router={router} />
+        </AuthProvider>
     </StrictMode>,
 );
