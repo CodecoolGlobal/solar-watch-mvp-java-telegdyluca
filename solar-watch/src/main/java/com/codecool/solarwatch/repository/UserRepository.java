@@ -1,14 +1,13 @@
 package com.codecool.solarwatch.repository;
 
-import com.codecool.solarwatch.model.entity.CityEntity;
+import com.codecool.solarwatch.model.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-
 @Repository
-public interface CityRepository extends JpaRepository<CityEntity, Long> {
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
-    Optional<CityEntity> findByName(String name);
+    Optional<UserEntity> findByUsername(String username);
 }

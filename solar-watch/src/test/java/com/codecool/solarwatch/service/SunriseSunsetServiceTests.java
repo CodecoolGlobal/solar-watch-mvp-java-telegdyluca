@@ -2,6 +2,7 @@ package com.codecool.solarwatch.service;
 
 import com.codecool.solarwatch.model.dto.SunriseSunsetApiResponse;
 import com.codecool.solarwatch.model.dto.SunriseSunsetReport;
+import com.codecool.solarwatch.service.api.SunriseSunsetService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
