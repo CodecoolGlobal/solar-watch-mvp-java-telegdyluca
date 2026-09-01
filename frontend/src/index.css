@@ -1,0 +1,15 @@
+:root {
+  --color-cream: #F5EEE7;
+  --color-peach: #FDD7CB;
+  --color-accent: #EE9F27;
+  --color-dark: #14181f;
+  --color-white: #FFFFFF;
+
+  --font-main: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  background-color: var(--color-cream);
+}

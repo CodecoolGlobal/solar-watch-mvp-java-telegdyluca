@@ -52,6 +52,8 @@ public class UserController {
         userEntity.setRoles(Set.of(Role.ROLE_USER));
         userService.createUser(userEntity);
         return ResponseEntity.status(HttpStatus.CREATED).body("User successfully created");
+
+        //TODO: Refactor
     }
 
     @PostMapping("/user/login")
@@ -64,6 +66,8 @@ public class UserController {
         List<String> roles = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList();
 
         return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), roles));
+
+        //TODO: Refactor
     }
 
     @GetMapping("/sunrise-sunset")
