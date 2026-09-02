@@ -77,5 +77,7 @@ public class UserController {
         SunriseSunsetTimeEntity times = sunriseSunsetTimesService.getSunriseSunsetByCityAndDate(cityEntity, date);
 
         return new SunriseSunsetReport(cityEntity.getName(), times.getDate(), times.getSunrise(), times.getSunset());
+
+        //TODO: Refactor
     }
 }

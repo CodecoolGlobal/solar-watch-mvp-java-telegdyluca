@@ -11,4 +11,6 @@ import java.util.Optional;
 public interface CityRepository extends JpaRepository<CityEntity, Long> {
 
     Optional<CityEntity> findByName(String name);
+
+    void deleteByName(String name);
 }

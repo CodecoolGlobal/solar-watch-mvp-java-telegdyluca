@@ -13,4 +13,5 @@ public interface SunriseSunsetTimesRepository extends JpaRepository<SunriseSunse
 
     Optional<SunriseSunsetTimeEntity> findByCityAndDate(CityEntity city, LocalDate date);
 
+    void deleteByCityId(Long cityId);
 }
