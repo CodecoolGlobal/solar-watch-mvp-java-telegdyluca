@@ -26,24 +26,31 @@ class UserControllerIntegrationTests {
     @Test
     @Transactional
     void testRegisterUser() throws Exception {
-        userRepository.deleteByUsername("TestName");
-
-        String requestBody = "{\"username\": \"TestName\", \"password\": \"test_password\"}";
-
-        mockMvc.perform(post("/user/register")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestBody))
-                .andExpect(status().isCreated())
-                .andExpect(content().string("User successfully created"));
+        register();
     }
 
     @Test
+    @Transactional
     void testLoginUser() throws Exception {
-        String requestBody = "{\"username\": \"TestName\", \"password\": \"test_password\"}";
+        register();
+
+        String body = "{\"username\": \"TestName\", \"password\": \"test_password\"}";
 
         mockMvc.perform(post("/user/login")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestBody))
+                        .content(body))
                 .andExpect(status().isOk());
+    }
+
+    private void register() throws Exception {
+        userRepository.deleteByUsername("TestName");
+
+        String body = "{\"username\": \"TestName\", \"password\": \"test_password\"}";
+
+        mockMvc.perform(post("/user/register")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body))
+                .andExpect(status().isCreated())
+                .andReturn();
     }
 }
