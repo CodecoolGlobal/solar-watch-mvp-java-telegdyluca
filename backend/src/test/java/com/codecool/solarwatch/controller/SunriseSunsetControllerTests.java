@@ -28,7 +28,7 @@ public class SunriseSunsetControllerTests {
     SunriseSunsetTimesService sunriseSunsetTimesService;
 
     @InjectMocks
-    private UserController controller;
+    private AuthController controller;
 
     @Test
     void getSunriseSunset_ReturnRightResult() {

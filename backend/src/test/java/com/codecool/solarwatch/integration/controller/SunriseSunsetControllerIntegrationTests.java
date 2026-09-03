@@ -119,13 +119,13 @@ class SunriseSunsetControllerIntegrationTests {
         userRepository.deleteByUsername("TestName");
         String body = "{\"username\": \"TestName\", \"password\": \"test_password\"}";
 
-        mockMvc.perform(post("/user/register")
+        mockMvc.perform(post("/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(body))
                 .andExpect(status().isCreated())
                 .andReturn();
 
-        MvcResult result = mockMvc.perform(post("/user/login")
+        MvcResult result = mockMvc.perform(post("/auth/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(body))
                 .andExpect(status().isOk())

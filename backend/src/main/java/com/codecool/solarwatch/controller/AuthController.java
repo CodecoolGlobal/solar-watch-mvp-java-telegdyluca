@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-public class UserController {
+public class AuthController {
 
     private final CityService cityService;
     private final SunriseSunsetTimesService sunriseSunsetTimesService;
@@ -35,7 +35,7 @@ public class UserController {
     private final JwtUtils jwtUtils;
     private final AuthenticationManager authenticationManager;
 
-    public UserController(CityService cityService, SunriseSunsetTimesService sunriseSunsetTimesService, UserService userService,
+    public AuthController(CityService cityService, SunriseSunsetTimesService sunriseSunsetTimesService, UserService userService,
                           JwtUtils jwtUtils, AuthenticationManager authenticationManager) {
         this.cityService = cityService;
         this.sunriseSunsetTimesService = sunriseSunsetTimesService;
@@ -44,7 +44,7 @@ public class UserController {
         this.authenticationManager = authenticationManager;
     }
 
-    @PostMapping("/user/register")
+    @PostMapping("/auth/register")
     public ResponseEntity<String> createUser(@RequestBody UserRequest request) {
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(request.getUsername());
@@ -56,7 +56,7 @@ public class UserController {
         //TODO: Refactor
     }
 
-    @PostMapping("/user/login")
+    @PostMapping("/auth/login")
     public ResponseEntity<?> loginUser(@RequestBody UserRequest request) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
