@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -47,6 +48,12 @@ class SunriseSunsetControllerIntegrationTests {
     private UserRepository userRepository;
 
     private static MockWebServer mockWebServer;
+
+    @BeforeAll
+    static void startMockServer() throws IOException {
+        mockWebServer = new MockWebServer();
+        mockWebServer.start();
+    }
 
     @DynamicPropertySource
     static void overrideProperties(DynamicPropertyRegistry registry) {
