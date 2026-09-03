@@ -3,11 +3,13 @@ package com.codecool.solarwatch.service;
 import com.codecool.solarwatch.exception.CityNotFoundException;
 import com.codecool.solarwatch.model.dto.GeoLocationReport;
 import com.codecool.solarwatch.service.api.GeocodingService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.client.RestTemplate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,6 +26,11 @@ class GeocodingServiceTests {
 
     @InjectMocks
     private GeocodingService geocodingService;
+
+    @BeforeEach
+    void setUp() {
+        ReflectionTestUtils.setField(geocodingService, "geoUrl", "https://api.openweathermap.org/geo/1.0/direct?q=%s&appid=%s");
+    }
 
     @Test
     void getCoordinates_ReturnsFirstResult_WhenCityExists() {
