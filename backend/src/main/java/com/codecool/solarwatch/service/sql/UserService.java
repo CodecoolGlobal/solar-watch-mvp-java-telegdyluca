@@ -25,7 +25,12 @@ public class UserService {
         this.encoder = encoder;
     }
 
-    public void createUser(UserEntity userEntity) {
+    public void registerUser(UserRequest request) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUsername(request.getUsername());
+        userEntity.setPassword(getPassword(request));
+        userEntity.setRoles(Set.of(Role.ROLE_USER));
+
         if (userRepository.findByUsername(userEntity.getUsername()).isPresent()) {
             throw new IllegalArgumentException(format("Username %s is already taken", userEntity.getUsername()));
         }

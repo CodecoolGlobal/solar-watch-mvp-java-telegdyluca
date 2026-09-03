@@ -34,15 +34,9 @@ public class AuthController {
     }
 
     @PostMapping("/auth/register")
-    public ResponseEntity<String> createUser(@RequestBody UserRequest request) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUsername(request.getUsername());
-        userEntity.setPassword(userService.getPassword(request));
-        userEntity.setRoles(Set.of(Role.ROLE_USER));
-        userService.createUser(userEntity);
+    public ResponseEntity<String> registerUser(@RequestBody UserRequest request) {
+        userService.registerUser(request);
         return ResponseEntity.status(HttpStatus.CREATED).body("User successfully created");
-
-        //TODO: Refactor
     }
 
     @PostMapping("/auth/login")
