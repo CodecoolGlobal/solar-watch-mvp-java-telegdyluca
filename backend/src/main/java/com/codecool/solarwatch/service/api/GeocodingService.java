@@ -12,6 +12,9 @@ public class GeocodingService {
     @Value("${OPENWEATHER_API_KEY}")
     private String apiKey;
 
+    @Value("${codecool.app.geourl}")
+    private String geoUrl;
+
     private final RestTemplate restTemplate;
 
     public GeocodingService(RestTemplate restTemplate) {
@@ -19,7 +22,7 @@ public class GeocodingService {
     }
 
     public GeoLocationReport getCoordinates(String city) {
-        String url = String.format("https://api.openweathermap.org/geo/1.0/direct?q=%s&appid=%s", city, apiKey);
+        String url = String.format(geoUrl, city, apiKey);
 
         GeoLocationReport[] response = restTemplate.getForObject(url, GeoLocationReport[].class);
 
