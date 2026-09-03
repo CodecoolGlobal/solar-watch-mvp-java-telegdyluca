@@ -3,12 +3,14 @@ package com.codecool.solarwatch.integration.controller;
 import com.codecool.solarwatch.model.entity.CityEntity;
 import com.codecool.solarwatch.repository.CityRepository;
 import com.codecool.solarwatch.repository.SunriseSunsetTimesRepository;
+import com.codecool.solarwatch.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 class SunriseSunsetControllerIntegrationTests {
 
     @Autowired
@@ -31,6 +34,9 @@ class SunriseSunsetControllerIntegrationTests {
 
     @Autowired
     private SunriseSunsetTimesRepository sunriseSunsetRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Test
     void getSunriseSunset_cityAlreadyInDB() throws Exception {
@@ -65,10 +71,18 @@ class SunriseSunsetControllerIntegrationTests {
     }
 
     private String getJwtToken() throws Exception {
-        String loginBody = "{\"username\": \"TestName\", \"password\": \"test_password\"}";
+        userRepository.deleteByUsername("TestName");
+        String body = "{\"username\": \"TestName\", \"password\": \"test_password\"}";
+
+        mockMvc.perform(post("/user/register")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body))
+                .andExpect(status().isCreated())
+                .andReturn();
+
         MvcResult result = mockMvc.perform(post("/user/login")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(loginBody))
+                        .content(body))
                 .andExpect(status().isOk())
                 .andReturn();
 
