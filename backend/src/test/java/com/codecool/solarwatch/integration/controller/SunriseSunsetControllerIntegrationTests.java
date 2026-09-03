@@ -89,6 +89,7 @@ class SunriseSunsetControllerIntegrationTests {
     }
 
     @Test
+    @Transactional
     void getSunriseSunset_cityAlreadyInDB() throws Exception {
         CityEntity budapest = new CityEntity();
         budapest.setName("Budapest");
