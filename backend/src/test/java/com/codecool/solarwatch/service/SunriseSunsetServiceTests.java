@@ -3,11 +3,13 @@ package com.codecool.solarwatch.service;
 import com.codecool.solarwatch.model.dto.SunriseSunsetApiResponse;
 import com.codecool.solarwatch.model.dto.SunriseSunsetReport;
 import com.codecool.solarwatch.service.api.SunriseSunsetService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
@@ -26,6 +28,11 @@ class SunriseSunsetServiceTests {
 
     @InjectMocks
     private SunriseSunsetService sunriseSunsetService;
+
+    @BeforeEach
+    void setUp() {
+        ReflectionTestUtils.setField(sunriseSunsetService, "sunriseUrl", "https://api.sunrise-sunset.org/v2?lat=%s&lng=%s&date=%s");
+    }
 
     @Test
     void getSunriseSunsetReport_ReturnRightResult() {
