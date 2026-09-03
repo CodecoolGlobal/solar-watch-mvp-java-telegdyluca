@@ -30,6 +30,10 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file backend/pom.xml
+      env:
+        SOLARWATCH_JWT_SECRET: ${{ secrets.SOLARWATCH_JWT_SECRET }}
+        SOLARWATCH_JWT_EXPIRATION: ${{ secrets.SOLARWATCH_JWT_EXPIRATION }}
+        OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
