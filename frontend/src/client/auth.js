@@ -1,8 +1,8 @@
 
 const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}`;
 
-const getUriForRegistration = () => `${BASE_URL}/user/register`;
-const getUriForLogin = () => `${BASE_URL}/user/login`;
+const getUriForRegistration = () => `${BASE_URL}/auth/register`;
+const getUriForLogin = () => `${BASE_URL}/auth/login`;
 
 
 export const registerUser = async (username, password) => {

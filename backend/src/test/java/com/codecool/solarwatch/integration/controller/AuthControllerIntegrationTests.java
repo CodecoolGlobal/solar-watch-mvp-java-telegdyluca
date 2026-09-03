@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-class UserControllerIntegrationTests {
+class AuthControllerIntegrationTests {
 
     @Autowired
     private MockMvc mockMvc;
@@ -38,7 +38,7 @@ class UserControllerIntegrationTests {
 
         String body = "{\"username\": \"TestName\", \"password\": \"test_password\"}";
 
-        mockMvc.perform(post("/user/login")
+        mockMvc.perform(post("/auth/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(body))
                 .andExpect(status().isOk());
@@ -49,7 +49,7 @@ class UserControllerIntegrationTests {
 
         String body = "{\"username\": \"TestName\", \"password\": \"test_password\"}";
 
-        mockMvc.perform(post("/user/register")
+        mockMvc.perform(post("/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(body))
                 .andExpect(status().isCreated())
