@@ -1,4 +1,4 @@
-package com.codecool.solarwatch.controller;
+package com.codecool.solarwatch.controller.advice;
 
 import com.codecool.solarwatch.exception.CityNotFoundException;
 import org.springframework.http.HttpStatus;

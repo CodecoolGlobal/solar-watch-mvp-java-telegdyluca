@@ -1,5 +1,6 @@
 package com.codecool.solarwatch.controller;
 
+import com.codecool.solarwatch.controller.advice.ControllerAdvice;
 import com.codecool.solarwatch.exception.CityNotFoundException;
 import com.codecool.solarwatch.model.dto.SunriseSunsetReport;
 import com.codecool.solarwatch.model.entity.CityEntity;
@@ -28,7 +29,7 @@ public class SunriseSunsetControllerTests {
     SunriseSunsetTimesService sunriseSunsetTimesService;
 
     @InjectMocks
-    private AuthController controller;
+    private SunriseSunsetController controller;
 
     @Test
     void getSunriseSunset_ReturnRightResult() {
