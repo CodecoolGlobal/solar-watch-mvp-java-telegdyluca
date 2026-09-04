@@ -4,6 +4,7 @@ package com.codecool.solarwatch.security;
 import com.codecool.solarwatch.security.jwt.AuthEntryPointJwt;
 import com.codecool.solarwatch.security.jwt.AuthTokenFilter;
 import com.codecool.solarwatch.security.jwt.JwtUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.security.autoconfigure.web.servlet.SecurityFilterAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +30,9 @@ public class WebSecurityConfig {
     private final UserDetailsService userDetailsService;
     private final AuthEntryPointJwt authEntryPointJwt;
     private final JwtUtils jwtUtils;
+
+    @Value("${codecool.app.cors-allowed-origins}")
+    private String[] allowedOrigins;
 
     public WebSecurityConfig(UserDetailsService userDetailsService, AuthEntryPointJwt authEntryPointJwt, JwtUtils jwtUtils) {
         this.userDetailsService = userDetailsService;
@@ -76,7 +80,7 @@ public class WebSecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
+        configuration.setAllowedOrigins(List.of(allowedOrigins));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowedHeaders(List.of("*"));
 
