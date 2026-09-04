@@ -1,0 +1,28 @@
+
+services:
+  app:
+    build: ./backend
+    environment:
+      - OPENWEATHER_API_KEY=${OPENWEATHER_API_KEY}
+      - SOLARWATCH_ADMIN_PASSWORD=${SOLARWATCH_ADMIN_PASSWORD}
+      - SOLARWATCH_JWT_EXPIRATION=86400000
+      - SOLARWATCH_JWT_SECRET=${SOLARWATCH_JWT_SECRET}
+      - DB_USER=solarwatch
+      - DB_PASSWORD=solarwatch
+      - DB_URL=jdbc:postgresql://db:5432/solarwatch
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: solarwatch
+      POSTGRES_USER: solarwatch
+      POSTGRES_PASSWORD: solarwatch
+    ports:
+      - "5433:5432"
+    volumes:
+      - solarwatch-db-data:/var/lib/postgresql/data
+volumes:
+  solarwatch-db-data:
