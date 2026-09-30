@@ -19,8 +19,7 @@
 - [How it works](#how-it-works) 
 - [API](#api) 
 - [Configuration](#configuration) 
-- [Tests](#tests) 
-- [Roadmap](#roadmap) 
+- [Tests](#tests)
 - [Contact](#contact)
 
 </details>
